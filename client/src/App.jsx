@@ -1,5 +1,18 @@
+import { Outlet } from "react-router-dom";
+
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 function App() {
-  return <main className="text-3xl text-rose-500 font-bold">Hello tokoKu</main>;
+  return (
+    <>
+      <Header />
+      <main className="min-h-[71vh] lg:min-h-[78vh]">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
 }
 
 export default App;
