@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
+import Axios from "../utils/Axios";
+import SummaryApi from "../common/SummaryApi";
+import AxiosToastError from "../utils/AxiosToastError";
 
 const Login = () => {
   const [data, setData] = useState({
-    name: "",
     email: "",
+    password: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +30,34 @@ const Login = () => {
 
   const valideValue = Object.values(data).every((el) => el);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await Axios({
+        ...SummaryApi.login,
+        data: data,
+      });
+
+      if (response.data.error) {
+        toast.error(response.data.message);
+      }
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        localStorage.setItem("accesstoken", response.data.data.accesstoken);
+        localStorage.setItem("refreshToken", response.data.data.refreshToken);
+
+        setData({
+          email: "",
+          password: "",
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
+  };
 
   return (
     <section className="w-full container mx-auto px-2">
