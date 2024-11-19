@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { BsCart4 } from "react-icons/bs";
 
@@ -10,6 +10,11 @@ const Header = () => {
   const [isMobile] = useMobile();
   const location = useLocation();
   const isSearchPage = location.pathname === "/search";
+  const navigate = useNavigate();
+
+  const redirectToLoginPage = () => {
+    navigate("/login");
+  };
 
   return (
     <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 z-40 flex flex-col justify-center gap-1 bg-white">
@@ -49,7 +54,9 @@ const Header = () => {
 
             {/**Desktop**/}
             <div className="hidden lg:flex  items-center gap-10">
-              <Link to={"/login"}>Login</Link>
+              <button onClick={redirectToLoginPage} className="text-lg px-2">
+                Login
+              </button>
               <button className="flex items-center gap-2 bg-green-800 hover:bg-green-700 px-3 py-2 rounded text-white">
                 {/**add to card icons */}
                 <div className="animate-bounce">
