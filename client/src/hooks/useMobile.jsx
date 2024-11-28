@@ -1,25 +1,24 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const useMobile = (breakpoint = 768) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
 
   const handleResize = () => {
-    const checkpoint = window.innerWidth < breakpoint
-    setIsMobile(checkpoint)
-  }
+    const checkpoint = window.innerWidth < breakpoint;
+    setIsMobile(checkpoint);
+  };
 
   useEffect(() => {
-    handleResize()
+    handleResize();
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-  return [isMobile]
-}
+  return [isMobile];
+};
 
-export default useMobile
+export default useMobile;
