@@ -21,7 +21,7 @@ const UserMenu = ({ close }) => {
       const response = await Axios({
         ...SummaryApi.logout,
       });
-      console.log("logout", response);
+
       if (response.data.success) {
         if (close) {
           close();
@@ -56,9 +56,9 @@ const UserMenu = ({ close }) => {
         <Link
           onClick={handleClose}
           to={"/dashboard/profile"}
-          className="hover:text-primary-200"
+          className="text-primary-200 hover:text-primary-100"
         >
-          <HiOutlineExternalLink size={15} />
+          <HiOutlineExternalLink size={18} />
         </Link>
       </div>
       <Divider />
