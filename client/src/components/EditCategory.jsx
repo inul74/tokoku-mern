@@ -13,6 +13,7 @@ const EditCategory = ({ close, fetchData, data: CategoryData }) => {
     name: CategoryData.name,
     image: CategoryData.image,
   });
+
   const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e) => {
@@ -63,7 +64,7 @@ const EditCategory = ({ close, fetchData, data: CategoryData }) => {
     setData((preve) => {
       return {
         ...preve,
-        image: ImageResponse.data.url,
+        image: ImageResponse?.data?.url,
       };
     });
   };

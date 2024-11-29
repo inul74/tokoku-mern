@@ -12,6 +12,7 @@ const UploadCategoryModel = ({ close, fetchData }) => {
     name: "",
     image: "",
   });
+
   const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e) => {
@@ -61,7 +62,7 @@ const UploadCategoryModel = ({ close, fetchData }) => {
     setData((preve) => {
       return {
         ...preve,
-        image: ImageResponse.data.url,
+        image: ImageResponse?.data?.url,
       };
     });
   };

@@ -5,7 +5,7 @@ import Axios from "../utils/Axios";
 import NoData from "../components/NoData";
 import Loading from "../components/Loading";
 import SummaryApi from "../common/SummaryApi";
-import CofirmBox from "../components/CofirmBox";
+import ConfirmBox from "../components/ConfirmBox";
 import EditCategory from "../components/EditCategory";
 import AxiosToastError from "../utils/AxiosToastError";
 import UploadCategoryModel from "../components/UploadCategoryModel";
@@ -80,7 +80,10 @@ const CategoryPage = () => {
       <div className="p-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
         {categoryData.map((category, index) => {
           return (
-            <div className="w-32 h-56 rounded shadow-md" key={category._id}>
+            <div
+              className="w-32 h-56 rounded shadow-md"
+              key={category._id + index}
+            >
               <img
                 alt={category.name}
                 src={category.image}
@@ -129,10 +132,10 @@ const CategoryPage = () => {
       )}
 
       {openConfimBoxDelete && (
-        <CofirmBox
-          close={() => setOpenConfirmBoxDelete(false)}
+        <ConfirmBox
           cancel={() => setOpenConfirmBoxDelete(false)}
           confirm={handleDeleteCategory}
+          close={() => setOpenConfirmBoxDelete(false)}
         />
       )}
     </section>
